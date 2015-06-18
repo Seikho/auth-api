@@ -4,7 +4,8 @@
   "description": "designco authentication api",
   "main": "src/index",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node src/index --port 10003"
   },
   "repository": {
     "type": "git",

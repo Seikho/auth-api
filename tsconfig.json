@@ -16,6 +16,7 @@
     "files": [
         "./src/index.ts",
         "./src/server.ts",
+        "./src/store/init.ts",
         "./src/typings/bluebird/bluebird.d.ts",
         "./src/typings/express/express.d.ts",
         "./src/typings/longshot/config.d.ts",
