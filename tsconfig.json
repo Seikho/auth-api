@@ -1,0 +1,26 @@
+{
+    "version": "1.5.0-alpha",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "./src/**/*.ts"
+    ],
+    "files": [
+        "./src/index.ts",
+        "./src/typings/bluebird/bluebird.d.ts",
+        "./src/typings/express/express.d.ts",
+        "./src/typings/longshot/config.d.ts",
+        "./src/typings/longshot/events.d.ts",
+        "./src/typings/longshot/logger.d.ts",
+        "./src/typings/node/node.d.ts",
+        "./src/typings/redis/redis.d.ts"
+    ]
+}

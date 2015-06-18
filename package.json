@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/designco-wa/auth-api#readme",
   "dependencies": {
+    "bluebird": "^2.9.30",
     "express": "^4.12.4",
     "ls-config": "^0.2.2",
     "ls-events": "^0.7.0",
