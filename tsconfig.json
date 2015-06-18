@@ -14,11 +14,14 @@
         "./src/**/*.ts"
     ],
     "files": [
+        "./src/api/web.ts",
         "./src/index.ts",
         "./src/server.ts",
+        "./src/store/db.ts",
         "./src/store/init.ts",
         "./src/typings/bluebird/bluebird.d.ts",
         "./src/typings/express/express.d.ts",
+        "./src/typings/knex/knex.d.ts",
         "./src/typings/longshot/config.d.ts",
         "./src/typings/longshot/events.d.ts",
         "./src/typings/longshot/logger.d.ts",

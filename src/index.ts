@@ -1,6 +1,7 @@
 import cfg = require("ls-config");
 import dbInit = require("./store/init");
 import log = require("ls-logger");
+import server = require("./server");
 
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDtabase", "auth.db");
