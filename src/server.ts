@@ -3,7 +3,7 @@ import cfg = require("ls-config");
 var bodyParser = require("body-parser");
 export = server;
 
-var port = cfg.config("port") || 10003;
+var port = cfg.config("port") || cfg.config("p") || 10003;
 
 // Configure express
 var server = express();
