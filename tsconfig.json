@@ -15,8 +15,8 @@
     ],
     "files": [
         "./src/api/web.ts",
-        "./src/handlers/createUser.ts",
         "./src/handlers/init.ts",
+        "./src/handlers/users/create.ts",
         "./src/index.ts",
         "./src/server.ts",
         "./src/store/db.ts",

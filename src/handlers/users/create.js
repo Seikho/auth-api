@@ -1,4 +1,4 @@
-var db = require("../store/db");
+var db = require("../../store/db");
 var store = require("ls-events");
 var log = require("ls-logger");
 var Promise = require("bluebird");

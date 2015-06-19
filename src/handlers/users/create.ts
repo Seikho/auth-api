@@ -1,4 +1,4 @@
-import db = require("../store/db");
+import db = require("../../store/db");
 import store = require("ls-events");
 import log = require("ls-logger");
 import Promise = require("bluebird");
