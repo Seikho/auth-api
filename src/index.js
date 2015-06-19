@@ -10,3 +10,5 @@ dbInit()
     .catch(function (error) {
     log.error("Failed to created database: " + error);
 });
+log.info("Loading event handlers");
+require("./handlers/init");
