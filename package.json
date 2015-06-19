@@ -5,7 +5,7 @@
   "main": "src/index",
   "scripts": {
     "test": "mocha",
-    "start": "node src/index --port 10003"
+    "start": "node src/index -p 10003"
   },
   "repository": {
     "type": "git",
