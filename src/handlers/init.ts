@@ -1,4 +1,4 @@
 // Load user handlers
-require("./users/createUser");
+require("./users/create");
 
 // Load auth handlers

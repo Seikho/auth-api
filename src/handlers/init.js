@@ -1,1 +1,1 @@
-require("./users/createUser");
+require("./users/create");

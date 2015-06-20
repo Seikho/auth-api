@@ -4,7 +4,7 @@ import log = require("ls-logger");
 import server = require("./server");
 
 cfg.config("baseDatabase", "auth.base.db");
-cfg.config("liveDtabase", "auth.db");
+cfg.config("liveDatabase", "auth.db");
 
 dbInit()
     .then(isCreated => {
