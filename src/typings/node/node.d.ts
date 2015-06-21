@@ -252,7 +252,7 @@ declare module NodeJS {
         ArrayBuffer: typeof ArrayBuffer;
         Boolean: typeof Boolean;
         Buffer: typeof Buffer;
-        DataView: typeof DataView;
+        //DataView: typeof DataView;
         Date: typeof Date;
         Error: typeof Error;
         EvalError: typeof EvalError;
