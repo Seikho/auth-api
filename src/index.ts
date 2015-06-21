@@ -11,11 +11,7 @@ cfg.config("liveDatabase", "auth.db");
 
 dbInit()
     .then(successHandler)
-    .catch(error => {
-        log.error("Failed to created database: " + error);
-        
-        process.exit(1);
-    });
+    .catch(failHandler);
 
 log.info("Loading event handlers");
 require("./handlers/init");

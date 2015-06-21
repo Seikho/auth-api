@@ -7,10 +7,7 @@ cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
 dbInit()
     .then(successHandler)
-    .catch(function (error) {
-    log.error("Failed to created database: " + error);
-    process.exit(1);
-});
+    .catch(failHandler);
 log.info("Loading event handlers");
 require("./handlers/init");
 function successHandler(isCreated) {
