@@ -4,7 +4,7 @@ var log = require("ls-logger");
 var Promise = require("bluebird");
 store.psub("users/create/*", createUserHandler);
 function createUserHandler(channel, pattern, message) {
-    var user = JSON.parse(message);
+    var user = message.data;
     if (user.password)
         delete user.password;
     log.info("[HANDLER] Create request '" + user.username + "'");

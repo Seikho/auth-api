@@ -2,7 +2,7 @@ var cfg = require("ls-config");
 var dbInit = require("./store/init");
 var log = require("ls-logger");
 var store = require("ls-events");
-var webPort = cfg.config("webPort", 10004);
+var webPort = cfg.config("webPort", 10003);
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
 dbInit()

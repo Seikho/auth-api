@@ -6,8 +6,8 @@ import Promise = require("bluebird");
 // Listen to all 'create' requests
 store.psub("users/create/*", createUserHandler);
 
-function createUserHandler(channel: string, pattern: string, message: string) {
-	var user: App.User = JSON.parse(message);
+function createUserHandler(channel: string, pattern: string, message: store.EventData) {
+	var user: App.User = message.data;
 
     // Security measure. The user provides a password during first authentication
     if (user.password) delete user.password;

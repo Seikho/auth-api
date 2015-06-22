@@ -4,7 +4,7 @@ import log = require("ls-logger");
 import server = require("./server");
 import store = require("ls-events");
 
-var webPort = cfg.config("webPort", 10004);
+var webPort = cfg.config("webPort", 10003);
 
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
