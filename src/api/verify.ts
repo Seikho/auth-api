@@ -1,6 +1,6 @@
 import Promise = require("bluebird");
 import db = require("../store/db");
-var passwordHash = require("password-hash");
+var bcrypt = require("bcrypt");
 export = verify;
 
 function verify(username: string, password: string): Promise<boolean> {
@@ -16,6 +16,12 @@ function getUserPasswordHash(username: string): Promise<string> {
 }
 
 function compare(password: string, hashedPassword: string): Promise<boolean> {
-    var isCorrect = passwordHash.very(password, hashedPassword);
-    return Promise.resolve(isCorrect);
+    var promise = new Promise<boolean>((resolve, reject) => {
+        bcrypt.compare(password, hashedPassword, (err, isCorrect: boolean) => {
+            if (err) return reject(err);
+            resolve(Promise.resolve(isCorrect));
+        });
+    });
+
+    return promise;
 }
