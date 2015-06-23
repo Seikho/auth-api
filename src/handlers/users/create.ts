@@ -1,4 +1,5 @@
 import db = require("../../store/db");
+var bcrypt = require("bcrypt");
 import store = require("ls-events");
 import log = require("ls-logger");
 import Promise = require("bluebird");
@@ -6,7 +7,7 @@ import Promise = require("bluebird");
 // Listen to all 'create' requests
 store.psub("users/create/*", createUserHandler);
 
-function createUserHandler(channel: string, pattern: string, message: store.EventData) {
+function createUserHandler(channel: string, pattern: string, message: store.FetchResult) {
 	var user: App.User = message.data;
 
     // Security measure. The user provides a password during first authentication
