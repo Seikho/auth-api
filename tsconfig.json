@@ -15,6 +15,7 @@
     ],
     "files": [
         "./src/api/users/authenticate.ts",
+        "./src/api/users/create.ts",
         "./src/api/verify.ts",
         "./src/api/web.ts",
         "./src/handlers/init.ts",
