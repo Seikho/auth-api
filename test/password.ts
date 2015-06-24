@@ -23,7 +23,7 @@ describe("Password tests", () => {
         }).catch(done);
     });
 
-    it("will failed to match an incorrect password to a hash", done => {
+    it("will fail to match an incorrect password to a hash", done => {
         compareHash("wrong password", passwordHash)
             .then(isMatch => {
             expect(isMatch).to.be.false;

@@ -19,7 +19,7 @@ describe("Password tests", function () {
             done();
         }).catch(done);
     });
-    it("will failed to match an incorrect password to a hash", function (done) {
+    it("will fail to match an incorrect password to a hash", function (done) {
         compareHash("wrong password", passwordHash)
             .then(function (isMatch) {
             expect(isMatch).to.be.false;
