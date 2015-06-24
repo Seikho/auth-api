@@ -1,6 +1,7 @@
 var server = require("../server");
 var createUser = require("./users/create");
 var authUser = require("./users/authenticate");
+var log = require("ls-logger");
 server.post("/register", function (request, response) {
     var user = request.body;
     createUser(user)
@@ -28,3 +29,4 @@ server.post("/login", function (request, response) {
         response.send("Failed to authenticate: " + error);
     });
 });
+log.info("Registered Web API routes");
