@@ -7,12 +7,6 @@ import authUser = require("./users/authenticate");
 
 server.post("/register", (request, response) => {
     var user: App.User = request.body;
-    var isValidUser = validateUser(user);
-    if (!isValidUser) {
-        response.status(401);
-        return response.send("Invalid request: Required fields are not filled out");
-    }
-
     createUser(user)
         .then((ids: number[]) => response.send(ids[0]))
         .catch(error => {
@@ -21,14 +15,24 @@ server.post("/register", (request, response) => {
         });
 });
 
-function validateUser(user: any) {
-    var requiredProperties = [
-        "username",
-        "company",
-        "email",
-        "password"
-    ];
+server.post("/login", (request, response) => {
+    var hasPayload = !!request.body;
+    if (!hasPayload) {
+        response.sendStatus(401);
+        return response.send("Invalid request");
+    }
 
-    // The user must have every required field
-    return requiredProperties.every(user.hasOwnProperty);
-}
+    var isValidPayload = !!request.body.username && !!request.body.password;
+    if (!isValidPayload) {
+        response.sendStatus(401);
+        return response.send("Invalid request");
+    }
+
+    authUser(request.body.username, request.body.password)
+        .then(response.send)
+        .catch(error => {
+            response.status(500);
+            response.send("Failed to authenticate: " + error);
+        });
+
+});

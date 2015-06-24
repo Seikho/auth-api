@@ -1,12 +1,8 @@
 var server = require("../server");
 var createUser = require("./users/create");
+var authUser = require("./users/authenticate");
 server.post("/register", function (request, response) {
     var user = request.body;
-    var isValidUser = validateUser(user);
-    if (!isValidUser) {
-        response.status(401);
-        return response.send("Invalid request: Required fields are not filled out");
-    }
     createUser(user)
         .then(function (ids) { return response.send(ids[0]); })
         .catch(function (error) {
@@ -14,12 +10,21 @@ server.post("/register", function (request, response) {
         response.send("Unable to create user: " + error);
     });
 });
-function validateUser(user) {
-    var requiredProperties = [
-        "username",
-        "company",
-        "email",
-        "password"
-    ];
-    return requiredProperties.every(user.hasOwnProperty);
-}
+server.post("/login", function (request, response) {
+    var hasPayload = !!request.body;
+    if (!hasPayload) {
+        response.sendStatus(401);
+        return response.send("Invalid request");
+    }
+    var isValidPayload = !!request.body.username && !!request.body.password;
+    if (!isValidPayload) {
+        response.sendStatus(401);
+        return response.send("Invalid request");
+    }
+    authUser(request.body.username, request.body.password)
+        .then(response.send)
+        .catch(function (error) {
+        response.status(500);
+        response.send("Failed to authenticate: " + error);
+    });
+});
