@@ -1,6 +1,7 @@
 import db = require("../../store/db");
 import store = require("ls-events");
 import Promise = require("bluebird");
+import createHash = require("../createHash");
 var bcrypt = require("bcrypt");
 export = createUser;
 
@@ -39,25 +40,9 @@ function canUserBeCreated(username: string) {
 }
 
 function insertUser(user: App.User) {
-    return getPasswordHash(user.password)
+    return createHash(user.password)
         .then(hash => user.password)
         .then(() => {
         return db("users").insert(user);
     });
-}
-
-function getPasswordHash(password: string): Promise<string> {
-    var resolve, reject;
-    var promise = new Promise<string>((res, rej) => {
-        resolve = res;
-        reject = rej;
-    });
-
-    var salt = bcrypt.genSalt(10);
-    bcrypt.hash(password, salt, (err, hash) => {
-        if (err) return reject("Failed to create hash: " + err);
-        resolve(hash);
-    });
-
-    return promise;
 }
