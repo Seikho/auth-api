@@ -8,8 +8,6 @@ cfg.config("liveDatabase", "auth.db");
 dbInit()
     .then(successHandler)
     .catch(failHandler);
-log.info("Loading event handlers");
-require("./handlers/init");
 function successHandler(isCreated) {
     log.info("Database created: " + isCreated);
     var message = {

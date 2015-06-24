@@ -13,9 +13,6 @@ dbInit()
     .then(successHandler)
     .catch(failHandler);
 
-log.info("Loading event handlers");
-require("./handlers/init");
-
 function successHandler(isCreated: boolean) {
     log.info("Database created: " + isCreated);
 
