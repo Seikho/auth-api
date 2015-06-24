@@ -10,9 +10,9 @@ server.post("/register", (request, response) => {
     createUser(user)
         .then((ids: number[]) => response.send(ids[0]))
         .catch(error => {
-            response.status(500);
-            response.send("Unable to create user: " + error);
-        });
+        response.status(500);
+        response.send("Unable to create user: " + error);
+    });
 });
 
 server.post("/login", (request, response) => {
@@ -31,8 +31,8 @@ server.post("/login", (request, response) => {
     authUser(request.body.username, request.body.password)
         .then(response.send)
         .catch(error => {
-            response.status(500);
-            response.send("Failed to authenticate: " + error);
-        });
+        response.status(500);
+        response.send("Failed to authenticate: " + error);
+    });
 
 });
