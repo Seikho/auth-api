@@ -43,16 +43,12 @@ function getPasswordHash(password) {
         resolve = res;
         reject = rej;
     });
-    var createHash = function (saltError, salt) {
-        if (saltError)
-            return reject("Failed to create salt: " + saltError);
-        bcrypt.hash(password, salt, function (err, hash) {
-            if (err)
-                return reject("Failed to create hash: " + err);
-            resolve(hash);
-        });
-    };
-    bcrypt.genSalt(10, createHash);
+    var salt = bcrypt.genSalt(10);
+    bcrypt.hash(password, salt, function (err, hash) {
+        if (err)
+            return reject("Failed to create hash: " + err);
+        resolve(hash);
+    });
     return promise;
 }
 module.exports = createUser;

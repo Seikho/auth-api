@@ -10,6 +10,7 @@ dbInit()
     .catch(failHandler);
 function successHandler(isCreated) {
     log.info("Database created: " + isCreated);
+    require("./api/web");
     var message = {
         context: "services",
         event: "start",

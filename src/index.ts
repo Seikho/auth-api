@@ -16,6 +16,9 @@ dbInit()
 function successHandler(isCreated: boolean) {
     log.info("Database created: " + isCreated);
 
+    // Start the Web API
+    require("./api/web");
+    
     var message = {
         context: "services",
         event: "start",
