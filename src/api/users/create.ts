@@ -6,9 +6,18 @@ var bcrypt = require("bcrypt");
 export = createUser;
 
 function createUser(user: App.User) {
+    user.enabled = 1;
+    var isUserValid = isNewUserValid(user);
+    if (!isUserValid) return Promise.reject("Bad request: Required fields were not supplied");
+    var newUserId;
+
     return canUserBeCreated(user.username)
         .then(() => insertUser(user))
-        .then(() => store.pub(userToEvent(user)));
+        .then(id => {
+            newUserId = id[0];
+        })
+        .then(() => store.pub(userToEvent(user)))
+        .then(() => Promise.resolve(newUserId));
 }
 
 function userToEvent(user: App.User): store.Event {
@@ -40,9 +49,26 @@ function canUserBeCreated(username: string) {
 }
 
 function insertUser(user: App.User) {
+    var changePw = hash => {
+        user.password = hash;
+    }
+
     return createHash(user.password)
-        .then(hash => user.password)
+        .then(changePw)
         .then(() => {
-        return db("users").insert(user);
+        return db("users")
+            .insert(user)
+            .then(Promise.resolve);
     });
+}
+
+function isNewUserValid(user: any) {
+    var requiredFields = [
+        "username",
+        "password",
+        "company",
+        "email"
+    ];
+
+    return requiredFields.every(prop => user.hasOwnProperty(prop));
 }

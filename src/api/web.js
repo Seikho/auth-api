@@ -5,7 +5,9 @@ var log = require("ls-logger");
 server.post("/register", function (request, response) {
     var user = request.body;
     createUser(user)
-        .then(function (ids) { return response.send(ids[0]); })
+        .then(function (id) {
+        response.send({ id: id });
+    })
         .catch(function (error) {
         response.status(500);
         response.send("Unable to create user: " + error);

@@ -4,9 +4,18 @@ var Promise = require("bluebird");
 var createHash = require("../createHash");
 var bcrypt = require("bcrypt");
 function createUser(user) {
+    user.enabled = 1;
+    var isUserValid = isNewUserValid(user);
+    if (!isUserValid)
+        return Promise.reject("Bad request: Required fields were not supplied");
+    var newUserId;
     return canUserBeCreated(user.username)
         .then(function () { return insertUser(user); })
-        .then(function () { return store.pub(userToEvent(user)); });
+        .then(function (id) {
+        newUserId = id[0];
+    })
+        .then(function () { return store.pub(userToEvent(user)); })
+        .then(function () { return Promise.resolve(newUserId); });
 }
 function userToEvent(user) {
     return {
@@ -32,10 +41,24 @@ function canUserBeCreated(username) {
     });
 }
 function insertUser(user) {
+    var changePw = function (hash) {
+        user.password = hash;
+    };
     return createHash(user.password)
-        .then(function (hash) { return user.password; })
+        .then(changePw)
         .then(function () {
-        return db("users").insert(user);
+        return db("users")
+            .insert(user)
+            .then(Promise.resolve);
     });
+}
+function isNewUserValid(user) {
+    var requiredFields = [
+        "username",
+        "password",
+        "company",
+        "email"
+    ];
+    return requiredFields.every(function (prop) { return user.hasOwnProperty(prop); });
 }
 module.exports = createUser;

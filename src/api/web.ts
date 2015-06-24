@@ -9,7 +9,9 @@ import log = require("ls-logger");
 server.post("/register", (request, response) => {
     var user: App.User = request.body;
     createUser(user)
-        .then((ids: number[]) => response.send(ids[0]))
+        .then(id => {
+            response.send({id: id});
+        })
         .catch(error => {
         response.status(500);
         response.send("Unable to create user: " + error);
