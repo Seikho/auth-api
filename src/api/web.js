@@ -25,7 +25,7 @@ server.post("/login", function (request, response) {
         return response.send("Invalid request");
     }
     authUser(request.body.username, request.body.password)
-        .then(response.send)
+        .then(function (isCorrect) { return response.send(isCorrect); })
         .catch(function (error) {
         response.status(500);
         response.send("Failed to authenticate: " + error);

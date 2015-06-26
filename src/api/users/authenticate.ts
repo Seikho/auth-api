@@ -7,6 +7,7 @@ export = authenticate;
 function authenticate(username: string, password: string): Promise<boolean> {
     return getUserPasswordHash(username)
         .then(hash => compareHash(password, hash))
+        .catch(error => Promise.reject("[AUTH] " + error));
 }
 
 function getUserPasswordHash(username: string): Promise<string> {
@@ -14,4 +15,5 @@ function getUserPasswordHash(username: string): Promise<string> {
         .select("password")
         .where({ username: username })
         .then(result => Promise.resolve(result[0].password))
+        .catch(error => Promise.reject("[HASH] " + error));
 }

@@ -32,7 +32,7 @@ server.post("/login", (request, response) => {
     }
 
     authUser(request.body.username, request.body.password)
-        .then(response.send)
+        .then(isCorrect => response.send(isCorrect))
         .catch(error => {
         response.status(500);
         response.send("Failed to authenticate: " + error);

@@ -4,7 +4,7 @@ function compareHash(unhashed, hashedString) {
     var promise = new Promise(function (resolve, reject) {
         bcrypt.compare(unhashed, hashedString, function (err, isCorrect) {
             if (err)
-                return reject(err);
+                return reject("[COMPARE] " + err);
             resolve(Promise.resolve(isCorrect));
         });
     });
