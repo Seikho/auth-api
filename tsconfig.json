@@ -19,6 +19,7 @@
         "./src/api/createHash.ts",
         "./src/api/users/authenticate.ts",
         "./src/api/users/create.ts",
+        "./src/api/users/register.ts",
         "./src/api/web.ts",
         "./src/index.ts",
         "./src/server.ts",

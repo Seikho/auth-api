@@ -22,7 +22,6 @@ server.post("/login", (request, response) => {
     var hasPayload = !!request.body;
     if (!hasPayload) return response.send("[BODY] Invalid request");
 
-    console.log(request.body);
     var isValidPayload = !!request.body.username && !!request.body.password;
     if (!isValidPayload) return response.send("[REQ] Invalid request");
 
