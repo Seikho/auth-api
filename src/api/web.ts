@@ -20,17 +20,13 @@ server.post("/register", (request, response) => {
 
 server.post("/login", (request, response) => {
     var hasPayload = !!request.body;
-    if (!hasPayload) {
-        response.sendStatus(401);
-        return response.send("Invalid request");
-    }
+    if (!hasPayload) return response.send("[BODY] Invalid request");
 
+    console.log(request.body);
     var isValidPayload = !!request.body.username && !!request.body.password;
-    if (!isValidPayload) {
-        response.sendStatus(401);
-        return response.send("Invalid request");
-    }
+    if (!isValidPayload) return response.send("[REQ] Invalid request");
 
+    console.log(request.body);
     authUser(request.body.username, request.body.password)
         .then(isCorrect => response.send(isCorrect))
         .catch(error => {
