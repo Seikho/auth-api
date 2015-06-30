@@ -1,6 +1,7 @@
 import server = require("../server");
 import createUser = require("./users/create");
 import authUser = require("./users/authenticate");
+import createSession = require("./createSession");
 import log = require("ls-logger");
 
 // TODO: Enforce a password policy
@@ -25,9 +26,11 @@ server.post("/login", (request, response) => {
     var isValidPayload = !!request.body.username && !!request.body.password;
     if (!isValidPayload) return response.send("[REQ] Invalid request");
 
-    console.log(request.body);
-    authUser(request.body.username, request.body.password)
-        .then(isCorrect => response.send(isCorrect))
+    var username = request.body.user;
+    var password = request.body.password;
+    
+    authUser(username, password)
+        .then(token => createSession(username, token))
         .catch(error => {
         response.status(500);
         response.send("Failed to authenticate: " + error);

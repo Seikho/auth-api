@@ -5,7 +5,7 @@ import createToken = require("../createToken");
 var bcrypt = require("bcrypt");
 export = authenticate;
 
-function authenticate(username: string, password: string): Promise<boolean> {
+function authenticate(username: string, password: string): Promise<string> {
     return getUserPasswordHash(username)
         .then(hash => compareHash(password, hash))
         .then(hashHandler)

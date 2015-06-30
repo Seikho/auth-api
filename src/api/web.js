@@ -1,6 +1,7 @@
 var server = require("../server");
 var createUser = require("./users/create");
 var authUser = require("./users/authenticate");
+var createSession = require("./createSession");
 var log = require("ls-logger");
 server.post("/register", function (request, response) {
     var user = request.body;
@@ -20,9 +21,10 @@ server.post("/login", function (request, response) {
     var isValidPayload = !!request.body.username && !!request.body.password;
     if (!isValidPayload)
         return response.send("[REQ] Invalid request");
-    console.log(request.body);
-    authUser(request.body.username, request.body.password)
-        .then(function (isCorrect) { return response.send(isCorrect); })
+    var username = request.body.user;
+    var password = request.body.password;
+    authUser(username, password)
+        .then(function (token) { return createSession(username, token); })
         .catch(function (error) {
         response.status(500);
         response.send("Failed to authenticate: " + error);
