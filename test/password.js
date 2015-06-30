@@ -40,7 +40,7 @@ describe("Password tests", function () {
     it("will successfully verify the token", function (done) {
         verifyToken(storedToken)
             .then(function (object) {
-            expect(object.guid.length > 0).to.be.true;
+            expect(object.guid.length === 36).to.be.true;
             done();
         }).catch(done);
     });

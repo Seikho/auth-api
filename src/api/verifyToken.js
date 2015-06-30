@@ -14,6 +14,8 @@ function secretHandler(token, secret) {
     jwt.verify(token, secret, function (error, decoded) {
         if (error)
             return reject(error);
+        if (decoded.guid.length !== 36)
+            return resolve("The token ");
         return resolve(decoded);
     });
     return promise;

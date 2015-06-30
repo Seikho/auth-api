@@ -21,6 +21,8 @@
         "./src/api/createSession.ts",
         "./src/api/createToken.ts",
         "./src/api/getSecret.ts",
+        "./src/api/getSession.ts",
+        "./src/api/isStoredToken.ts",
         "./src/api/users/authenticate.ts",
         "./src/api/users/create.ts",
         "./src/api/verifyToken.ts",

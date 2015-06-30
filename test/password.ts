@@ -46,7 +46,7 @@ describe("Password tests", () => {
     it("will successfully verify the token", done => {
         verifyToken(storedToken)
             .then((object: App.Payload) => {
-                expect(object.guid.length > 0).to.be.true;
+                expect(object.guid.length === 36).to.be.true;
                 done();
             }).catch(done);
     })

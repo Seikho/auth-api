@@ -16,12 +16,11 @@ function secretHandler(token: string, secret: string) {
 		reject = rej;
 	});
 	
-	jwt.verify(token, secret, (error, decoded) => {
+	jwt.verify(token, secret, (error, decoded: App.Payload) => {
 		if (error) return reject(error);
+		if (decoded.guid.length !== 36) return resolve("The token ")
 		return resolve(decoded);
 	});
 	
 	return promise;
 }
-
-function 
