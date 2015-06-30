@@ -9,7 +9,7 @@ function createSession(username, token) {
                 event: "login",
                 context: "users",
                 key: username,
-                data: true
+                data: { error: false, auth: true }
             });
             return Promise.resolve(token);
         }
@@ -17,7 +17,7 @@ function createSession(username, token) {
             event: "login",
             context: "users",
             key: username,
-            data: false
+            data: { error: true, auth: false }
         });
         return Promise.reject("Failed to insert new record: Unexpected error. Try again later.");
     })
