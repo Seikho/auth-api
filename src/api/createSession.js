@@ -4,13 +4,20 @@ function createSession(username, token) {
     return db("sessions")
         .insert({ username: username, token: token })
         .then(function (id) {
-        if (id.length > 0)
+        if (id.length > 0) {
+            store.pub({
+                event: "login",
+                context: "users",
+                key: username,
+                data: true
+            });
             return Promise.resolve(token);
+        }
         store.pub({
             event: "login",
             context: "users",
             key: username,
-            data: true
+            data: false
         });
         return Promise.reject("Failed to insert new record: Unexpected error. Try again later.");
     })
