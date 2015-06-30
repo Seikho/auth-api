@@ -1,7 +1,7 @@
 {
   "name": "auth-api",
-  "version": "0.2.0",
-  "description": "designco authentication api",
+  "version": "0.3.0",
+  "description": "Longshot Authentication API",
   "main": "src/index",
   "scripts": {
     "test": "mocha",
