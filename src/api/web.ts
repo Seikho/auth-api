@@ -11,12 +11,12 @@ server.post("/register", (request, response) => {
     var user: App.User = request.body;
     createUser(user)
         .then(id => {
-            response.send({id: id});
+            response.send({ id: id });
         })
         .catch(error => {
-        response.status(500);
-        response.send("Unable to create user: " + error);
-    });
+            response.status(500);
+            response.send("Unable to create user: " + error);
+        });
 });
 
 server.post("/login", (request, response) => {
@@ -28,13 +28,13 @@ server.post("/login", (request, response) => {
 
     var username = request.body.user;
     var password = request.body.password;
-    
+
     authUser(username, password)
         .then(token => createSession(username, token))
         .catch(error => {
-        response.status(500);
-        response.send("Failed to authenticate: " + error);
-    });
+            response.status(500);
+            response.send("Failed to authenticate: " + error);
+        });
 });
 
 log.info("Registered Web API routes");

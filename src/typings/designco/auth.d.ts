@@ -13,4 +13,14 @@ declare module App {
 		username: string;
 		password: string;
 	}
+	
+	export interface Payload {
+		guid: string;
+	}
+	
+	export interface Session {
+		token: string;
+		username: string;
+		guid: string;
+	}
 }

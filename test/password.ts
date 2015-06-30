@@ -1,9 +1,12 @@
 import createHash = require("../src/api/createHash");
 import compareHash = require("../src/api/compareHash");
+import verifyToken = require("../src/api/verifyToken");
+import createToken = require("../src/api/createToken");
 import chai = require("chai");
 var expect = chai.expect;
 
 var passwordHash = "";
+var storedToken: any = {};
 
 describe("Password tests", () => {
     it("will create a password hash", done => {
@@ -29,5 +32,22 @@ describe("Password tests", () => {
             expect(isMatch).to.be.false;
             done();
         }).catch(done);
+    });
+    
+    it("will create a token", done => {
+       createToken()
+        .then(token => {
+            expect(token.length > 0).to.be.true;
+            storedToken = token;
+            done();
+        }).catch(done);
+    });
+    
+    it("will successfully verify the token", done => {
+        verifyToken(storedToken)
+            .then((object: App.Payload) => {
+                expect(object.guid.length > 0).to.be.true;
+                done();
+            }).catch(done);
     })
 });

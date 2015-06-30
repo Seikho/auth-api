@@ -1,6 +1,7 @@
 import Promise = require("bluebird");
 import jwt = require("jsonwebtoken");
 import getSecret = require("./getSecret");
+import db = require("../store/db");
 export = verifyToken;
 
 function verifyToken(token: string) {
@@ -22,3 +23,5 @@ function secretHandler(token: string, secret: string) {
 	
 	return promise;
 }
+
+function 
