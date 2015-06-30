@@ -22,6 +22,7 @@
         "./src/api/getSecret.ts",
         "./src/api/users/authenticate.ts",
         "./src/api/users/create.ts",
+        "./src/api/verifyToken.ts",
         "./src/api/web.ts",
         "./src/index.ts",
         "./src/server.ts",
