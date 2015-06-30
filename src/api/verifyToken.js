@@ -15,7 +15,7 @@ function secretHandler(token, secret) {
         if (error)
             return reject(error);
         if (decoded.guid.length !== 36)
-            return resolve("The token ");
+            return resolve("The supplied token is not valid");
         return resolve(decoded);
     });
     return promise;

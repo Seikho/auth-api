@@ -2,6 +2,8 @@ var server = require("../server");
 var createUser = require("./users/create");
 var authUser = require("./users/authenticate");
 var createSession = require("./createSession");
+var verifyToken = require("./verifyToken");
+var isStoredToken = require("./isStoredToken");
 var log = require("ls-logger");
 server.post("/register", function (request, response) {
     var user = request.body;
@@ -28,6 +30,22 @@ server.post("/login", function (request, response) {
         .catch(function (error) {
         response.status(500);
         response.send("Failed to authenticate: " + error);
+    });
+});
+server.post("/verify", function (request, response) {
+    var hasPayload = !!request.body;
+    if (!hasPayload)
+        return response.send("[BODY] Invalid request");
+    var isValidPayload = !!request.body.token;
+    if (!isValidPayload)
+        return response.send("[REQ] Invalid request");
+    var token = request.body.token;
+    verifyToken(token)
+        .then(function (decoded) { return isStoredToken(token); })
+        .then(response.send)
+        .catch(function (error) {
+        response.status(401);
+        response.send("Token is not verified");
     });
 });
 log.info("Registered Web API routes");

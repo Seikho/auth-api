@@ -18,7 +18,7 @@ function secretHandler(token: string, secret: string) {
 	
 	jwt.verify(token, secret, (error, decoded: App.Payload) => {
 		if (error) return reject(error);
-		if (decoded.guid.length !== 36) return resolve("The token ")
+		if (decoded.guid.length !== 36) return resolve("The supplied token is not valid");
 		return resolve(decoded);
 	});
 	

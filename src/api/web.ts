@@ -2,6 +2,8 @@ import server = require("../server");
 import createUser = require("./users/create");
 import authUser = require("./users/authenticate");
 import createSession = require("./createSession");
+import verifyToken = require("./verifyToken");
+import isStoredToken = require("./isStoredToken");
 import log = require("ls-logger");
 
 // TODO: Enforce a password policy
@@ -34,6 +36,24 @@ server.post("/login", (request, response) => {
         .catch(error => {
             response.status(500);
             response.send("Failed to authenticate: " + error);
+        });
+});
+
+server.post("/verify", (request, response) => {
+    var hasPayload = !!request.body;
+    if (!hasPayload) return response.send("[BODY] Invalid request");
+
+    var isValidPayload = !!request.body.token;
+    if (!isValidPayload) return response.send("[REQ] Invalid request");
+    
+    var token = request.body.token;
+       
+    verifyToken(token)
+        .then(decoded => isStoredToken(token))
+        .then(response.send)
+        .catch(error => {
+            response.status(401);
+            response.send("Token is not verified");
         });
 });
 
