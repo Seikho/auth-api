@@ -2,6 +2,8 @@ import getSecret = require("./getSecret");
 import jwt = require("jsonwebtoken");
 import Promise = require("bluebird");
 import Chance = require("chance");
+export = createToken;
+
 function createToken() {
 	return getSecret()
 		.then(secretHandler);

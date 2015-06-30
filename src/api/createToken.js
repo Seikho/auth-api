@@ -12,3 +12,4 @@ function secretHandler(secret) {
     var token = jwt.sign({ guid: guid }, secret);
     return Promise.resolve(token);
 }
+module.exports = createToken;

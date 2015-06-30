@@ -18,3 +18,4 @@ function secretHandler(token, secret) {
     });
     return promise;
 }
+module.exports = verifyToken;
