@@ -15,11 +15,13 @@
         "./test/**/*.ts"
     ],
     "files": [
+        "./test/password.ts",
         "./src/api/compareHash.ts",
         "./src/api/createHash.ts",
+        "./src/api/createToken.ts",
+        "./src/api/getSecret.ts",
         "./src/api/users/authenticate.ts",
         "./src/api/users/create.ts",
-        "./src/api/users/register.ts",
         "./src/api/web.ts",
         "./src/index.ts",
         "./src/server.ts",
@@ -35,7 +37,6 @@
         "./src/typings/longshot/logger.d.ts",
         "./src/typings/mocha/mocha.d.ts",
         "./src/typings/node/node.d.ts",
-        "./src/typings/redis/redis.d.ts",
-        "./test/password.ts"
+        "./src/typings/redis/redis.d.ts"
     ]
 }
