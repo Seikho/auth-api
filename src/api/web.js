@@ -1,13 +1,9 @@
 var server = require("../server");
-var createUser = require("./users/create");
-var authUser = require("./users/authenticate");
-var createSession = require("./createSession");
-var verifyToken = require("./verifyToken");
-var isStoredToken = require("./isStoredToken");
+var auth = require("./auth");
 var log = require("ls-logger");
 server.post("/register", function (request, response) {
     var user = request.body;
-    createUser(user)
+    auth.register(user)
         .then(function (id) {
         response.send({ id: id });
     })
@@ -25,8 +21,7 @@ server.post("/login", function (request, response) {
         return response.send("[REQ] Invalid request");
     var username = request.body.user;
     var password = request.body.password;
-    authUser(username, password)
-        .then(function (token) { return createSession(username, token); })
+    auth.login(username, password)
         .catch(function (error) {
         response.status(500);
         response.send("Failed to authenticate: " + error);
@@ -40,8 +35,7 @@ server.post("/verify", function (request, response) {
     if (!isValidPayload)
         return response.send("[REQ] Invalid request");
     var token = request.body.token;
-    verifyToken(token)
-        .then(function (decoded) { return isStoredToken(token); })
+    auth.verify(token)
         .then(response.send)
         .catch(function (error) {
         response.status(401);

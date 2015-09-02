@@ -1,4 +1,5 @@
 import server = require("../server");
+import auth = require("./auth");
 import createUser = require("./users/create");
 import authUser = require("./users/authenticate");
 import createSession = require("./createSession");
@@ -11,7 +12,8 @@ import log = require("ls-logger");
 
 server.post("/register", (request, response) => {
     var user: App.User = request.body;
-    createUser(user)
+
+    auth.register(user)
         .then(id => {
             response.send({ id: id });
         })
@@ -31,8 +33,7 @@ server.post("/login", (request, response) => {
     var username = request.body.user;
     var password = request.body.password;
 
-    authUser(username, password)
-        .then(token => createSession(username, token))
+    auth.login(username, password)
         .catch(error => {
             response.status(500);
             response.send("Failed to authenticate: " + error);
@@ -45,11 +46,10 @@ server.post("/verify", (request, response) => {
 
     var isValidPayload = !!request.body.token;
     if (!isValidPayload) return response.send("[REQ] Invalid request");
-    
+
     var token = request.body.token;
-       
-    verifyToken(token)
-        .then(decoded => isStoredToken(token))
+
+    auth.verify(token)
         .then(response.send)
         .catch(error => {
             response.status(401);
