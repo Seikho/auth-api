@@ -16,6 +16,7 @@
     ],
     "files": [
         "test/password.ts",
+        "src/api/auth.ts",
         "src/api/compareHash.ts",
         "src/api/createHash.ts",
         "src/api/createSession.ts",
