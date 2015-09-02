@@ -5,14 +5,15 @@
   "main": "src/index",
   "scripts": {
     "test": "mocha",
-    "start": "node src/index -p 10003"
+    "start": "node src/index -p 10003",
+    "build": "tsglob && tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/designco-wa/auth-api.git"
   },
   "keywords": [
-    "designco",
+    "longshot",
     "authentication",
     "api"
   ],
@@ -36,5 +37,9 @@
     "ls-logger": "^0",
     "mocha": "^2.2.5",
     "sqlite3": "^3.0.8"
+  },
+  "devDependencies": {
+    "ts-globber": "^0.4.3",
+    "typescript": "^1.5.3"
   }
 }
