@@ -1,3 +1,7 @@
+declare module "ls-auth-api" {
+	export = App;
+}
+
 declare module App {
 
 	function login(username: string, password: string): Promise<string>;
