@@ -31,3 +31,4 @@ function failHandler(errorMessage) {
     store.pub(message)
         .then(function () { return process.exit(1); });
 }
+module.exports = require("./api/auth");

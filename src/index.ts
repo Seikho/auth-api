@@ -3,6 +3,7 @@ import dbInit = require("./store/init");
 import log = require("ls-logger");
 import server = require("./server");
 import store = require("ls-events");
+export = require("./api/auth");
 
 var webPort = cfg.config("webPort", 10003);
 
