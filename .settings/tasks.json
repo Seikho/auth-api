@@ -10,7 +10,11 @@
 // Compiles a HelloWorld.ts program
 {
 	"version": "0.1.0",
-	"command": "tsglob && tsc",
+	"command": "npm",
+	"args": [
+		"run",
+		"build"
+	],
 	"isShellCommand": true, 
 	"showOutput": "silent",
 	"problemMatcher": "$tsc"
