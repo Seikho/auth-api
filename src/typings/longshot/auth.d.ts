@@ -1,6 +1,10 @@
 declare module App {
 
-	export interface User {
+	function login(username: string, password: string): Promise<string>;
+	function register(user: User): Promise<number>;
+	function verify(token: string): Promise<boolean>;
+
+	interface User {
 		displayName: string;
 		username: string;
 		email: string;
@@ -9,16 +13,16 @@ declare module App {
 		company?: string;
 	}
 
-	export interface Login {
+	interface Login {
 		username: string;
 		password: string;
 	}
 	
-	export interface Payload {
+	interface Payload {
 		guid: string;
 	}
 	
-	export interface Session {
+	interface Session {
 		token: string;
 		username: string;
 		guid: string;
