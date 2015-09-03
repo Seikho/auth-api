@@ -5,7 +5,7 @@
   "main": "src/index",
   "scripts": {
     "test": "mocha",
-    "start": "node src/index -p 10003",
+    "start": "node src/index",
     "build": "tsglob && tsc"
   },
   "repository": {
@@ -33,7 +33,6 @@
     "jsonwebtoken": "^5.0.2",
     "knex": "^0.8.6",
     "ls-config": "^0",
-    "ls-events": "^0",
     "ls-logger": "^0",
     "mocha": "^2.2.5",
     "sqlite3": "^3.0.8"
