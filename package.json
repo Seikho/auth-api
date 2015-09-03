@@ -1,6 +1,6 @@
 {
-  "name": "auth-api",
-  "version": "0.4.0",
+  "name": "ls-auth-api",
+  "version": "0.5.0",
   "description": "Longshot Authentication API",
   "main": "src/index",
   "scripts": {

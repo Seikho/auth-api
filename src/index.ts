@@ -3,7 +3,14 @@ import dbInit = require("./store/init");
 import log = require("ls-logger");
 import server = require("./server");
 import store = require("ls-events");
-export = require("./api/auth");
+import authApi = require("./api/auth");
+import webInit = require("./api/web");
+export = {
+    login: authApi.login,
+    register: authApi.register,
+    verify: authApi.verify,
+    startWebServer: webInit
+}
 
 var webPort = cfg.config("webPort", 10003);
 
@@ -18,8 +25,6 @@ function successHandler(isCreated: boolean) {
     log.info("Database created: " + isCreated);
 
     // Start the Web API
-    require("./api/web");
-    
     var message = {
         context: "services",
         event: "start",
@@ -40,7 +45,4 @@ function failHandler(errorMessage: any) {
         key: "auth",
         data: { error: errorMessage }
     };
-
-    store.pub(message)
-        .then(() => process.exit(1));
 }

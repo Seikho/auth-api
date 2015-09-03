@@ -2,6 +2,7 @@ declare module "ls-auth-api" {
 	function login(username: string, password: string): Promise<string>;
 	function register(user: User): Promise<number>;
 	function verify(token: string): Promise<boolean>;
+	function startWebServer(port?: number): void;
 
 	interface User {
 		displayName: string;
