@@ -1,7 +1,10 @@
 var server = require("../server");
 var auth = require("./auth");
 var log = require("ls-logger");
+var cfg = require("ls-config");
 function init() {
+    var port = cfg.config("port") || cfg.config("p") || 10003;
+    server.listen(port);
     server.post("/register", function (request, response) {
         var user = request.body;
         auth.register(user)

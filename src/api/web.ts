@@ -6,11 +6,15 @@ import createSession = require("./createSession");
 import verifyToken = require("./verifyToken");
 import isStoredToken = require("./isStoredToken");
 import log = require("ls-logger");
+import cfg = require("ls-config");
 export = init;
 // TODO: Enforce a password policy
 // TODO: Disallow top 10000 most common passwords
 
 function init() {
+    var port = cfg.config("port") || cfg.config("p") || 10003;    
+    server.listen(port);
+    
     server.post("/register", (request, response) => {
         var user: App.User = request.body;
 
