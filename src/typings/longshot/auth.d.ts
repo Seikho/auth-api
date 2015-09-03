@@ -5,12 +5,10 @@ declare module "ls-auth-api" {
 	function startWebServer(port?: number): void;
 
 	interface User {
-		displayName: string;
 		username: string;
 		email: string;
 		password: string;
-		enabled: number;
-		company?: string;
+		enabled?: number;
 	}
 
 	interface Login {
