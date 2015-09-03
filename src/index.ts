@@ -40,7 +40,4 @@ function failHandler(errorMessage: any) {
         key: "auth",
         data: { error: errorMessage }
     };
-
-    store.pub(message)
-        .then(() => process.exit(1));
 }
