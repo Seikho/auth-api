@@ -1,9 +1,11 @@
 var server = require("../server");
 var auth = require("./auth");
 var log = require("ls-logger");
-var cfg = require("ls-config");
+var started = false;
 function init(port) {
-    port = port || cfg.config("port") || cfg.config("p") || 10003;
+    if (started)
+        return;
+    started = true;
     server.listen(port);
     server.post("/register", function (request, response) {
         var user = request.body;

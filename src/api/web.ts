@@ -11,9 +11,12 @@ import cfg = require("ls-config");
 export = init;
 // TODO: Enforce a password policy
 // TODO: Disallow top 10000 most common passwords
+var started = false;
 
 function init(port?: number) {
-    port = port || cfg.config("port") || cfg.config("p") || 10003;    
+    if (started) return;
+       
+    started = true;
     server.listen(port);
     
     server.post("/register", (request, response) => {

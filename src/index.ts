@@ -11,7 +11,7 @@ export = {
     startWebServer: webInit
 }
 
-var webPort = cfg.config("auth", 10003);
+var cliPort = cfg.config("auth-port") || 0;
 
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
@@ -22,25 +22,12 @@ dbInit()
 
 function successHandler(isCreated: boolean) {
     log.info("Database created: " + isCreated);
-
-    // Start the Web API
-    var message = {
-        context: "services",
-        event: "start",
-        key: "auth",
-        data: { port: webPort }
-    };
-
+    if (cliPort === 0) return; 
+    
+    webInit(cliPort);
     log.info("Server successfully started");
 }
 
 function failHandler(errorMessage: any) {
     log.error("Failed to start server (Database error): " + errorMessage);
-
-    var message = {
-        context: "services",
-        event: "startError",
-        key: "auth",
-        data: { error: errorMessage }
-    };
 }
