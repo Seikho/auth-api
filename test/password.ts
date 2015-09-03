@@ -1,3 +1,4 @@
+import AuthApi = require("ls-auth-api");
 import createHash = require("../src/api/createHash");
 import compareHash = require("../src/api/compareHash");
 import verifyToken = require("../src/api/verifyToken");
@@ -45,7 +46,7 @@ describe("Password tests", () => {
     
     it("will successfully verify the token", done => {
         verifyToken(storedToken)
-            .then((object: App.Payload) => {
+            .then((object: AuthApi.Payload) => {
                 expect(object.guid.length === 36).to.be.true;
                 done();
             }).catch(done);

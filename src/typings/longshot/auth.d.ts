@@ -1,9 +1,4 @@
 declare module "ls-auth-api" {
-	export = App;
-}
-
-declare module App {
-
 	function login(username: string, password: string): Promise<string>;
 	function register(user: User): Promise<number>;
 	function verify(token: string): Promise<boolean>;
@@ -21,11 +16,11 @@ declare module App {
 		username: string;
 		password: string;
 	}
-	
+
 	interface Payload {
 		guid: string;
 	}
-	
+
 	interface Session {
 		token: string;
 		username: string;

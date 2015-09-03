@@ -1,3 +1,4 @@
+import AuthApi = require("ls-auth-api");
 import Promise = require("bluebird");
 import jwt = require("jsonwebtoken");
 import getSecret = require("./getSecret");
@@ -16,7 +17,7 @@ function secretHandler(token: string, secret: string) {
 		reject = rej;
 	});
 	
-	jwt.verify(token, secret, (error, decoded: App.Payload) => {
+	jwt.verify(token, secret, (error, decoded: AuthApi.Payload) => {
 		if (error) return reject(error);
 		if (decoded.guid.length !== 36) return resolve("The supplied token is not valid");
 		return resolve(decoded);
