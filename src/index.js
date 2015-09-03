@@ -1,10 +1,9 @@
 var cfg = require("ls-config");
 var dbInit = require("./store/init");
 var log = require("ls-logger");
-var store = require("ls-events");
 var authApi = require("./api/auth");
 var webInit = require("./api/web");
-var webPort = cfg.config("webPort", 10003);
+var webPort = cfg.config("auth", 10003);
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
 dbInit()
@@ -18,8 +17,7 @@ function successHandler(isCreated) {
         key: "auth",
         data: { port: webPort }
     };
-    store.pub(message)
-        .then(function () { return log.info("Server successfully started"); });
+    log.info("Server successfully started");
 }
 function failHandler(errorMessage) {
     log.error("Failed to start server (Database error): " + errorMessage);

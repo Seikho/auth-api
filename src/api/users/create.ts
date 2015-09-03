@@ -1,6 +1,5 @@
 import AuthApi = require("ls-auth-api");
 import db = require("../../store/db");
-import store = require("ls-events");
 import Promise = require("bluebird");
 import createHash = require("../createHash");
 var bcrypt = require("bcrypt");

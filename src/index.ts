@@ -2,7 +2,6 @@ import cfg = require("ls-config");
 import dbInit = require("./store/init");
 import log = require("ls-logger");
 import server = require("./server");
-import store = require("ls-events");
 import authApi = require("./api/auth");
 import webInit = require("./api/web");
 export = {
@@ -12,7 +11,7 @@ export = {
     startWebServer: webInit
 }
 
-var webPort = cfg.config("webPort", 10003);
+var webPort = cfg.config("auth", 10003);
 
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
@@ -32,8 +31,7 @@ function successHandler(isCreated: boolean) {
         data: { port: webPort }
     };
 
-    store.pub(message)
-        .then(() => log.info("Server successfully started"));
+    log.info("Server successfully started");
 }
 
 function failHandler(errorMessage: any) {
