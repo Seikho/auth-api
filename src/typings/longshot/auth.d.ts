@@ -6,7 +6,6 @@ declare module "ls-auth-api" {
 
 	interface User {
 		username: string;
-		email: string;
 		password: string;
 		enabled?: number;
 	}
