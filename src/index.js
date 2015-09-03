@@ -2,6 +2,8 @@ var cfg = require("ls-config");
 var dbInit = require("./store/init");
 var log = require("ls-logger");
 var store = require("ls-events");
+var authApi = require("./api/auth");
+var webInit = require("./api/web");
 var webPort = cfg.config("webPort", 10003);
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
@@ -10,7 +12,6 @@ dbInit()
     .catch(failHandler);
 function successHandler(isCreated) {
     log.info("Database created: " + isCreated);
-    require("./api/web");
     var message = {
         context: "services",
         event: "start",
@@ -29,4 +30,9 @@ function failHandler(errorMessage) {
         data: { error: errorMessage }
     };
 }
-module.exports = require("./api/auth");
+module.exports = {
+    login: authApi.login,
+    register: authApi.register,
+    verify: authApi.verify,
+    startWebServer: webInit
+};
