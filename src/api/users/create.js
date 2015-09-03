@@ -1,5 +1,4 @@
 var db = require("../../store/db");
-var store = require("ls-events");
 var Promise = require("bluebird");
 var createHash = require("../createHash");
 var bcrypt = require("bcrypt");
@@ -8,25 +7,10 @@ function createUser(user) {
     var isUserValid = isNewUserValid(user);
     if (!isUserValid)
         return Promise.reject("Bad request: Required fields were not supplied " + JSON.stringify(requiredFields));
-    var newUserId;
     return canUserBeCreated(user.username)
         .then(function () { return insertUser(user); })
-        .then(function (id) {
-        newUserId = id[0];
-    })
-        .then(function () { return store.pub(userToEvent(user)); })
-        .then(function () { return Promise.resolve(newUserId); });
-}
-function userToEvent(user) {
-    return {
-        context: "users",
-        event: "create",
-        key: user.username,
-        data: {
-            username: user.username,
-            email: user.email,
-        }
-    };
+        .then(function (id) { return id[0]; })
+        .then(function (newUserId) { return Promise.resolve(newUserId); });
 }
 function canUserBeCreated(username) {
     return db("users")

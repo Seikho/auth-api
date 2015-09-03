@@ -10,27 +10,11 @@ function createUser(user: AuthApi.User) {
     user.enabled = 1;
     var isUserValid = isNewUserValid(user);
     if (!isUserValid) return Promise.reject("Bad request: Required fields were not supplied " + JSON.stringify(requiredFields));
-    var newUserId;
 
     return canUserBeCreated(user.username)
         .then(() => insertUser(user))
-        .then(id => {
-            newUserId = id[0];
-        })
-        .then(() => store.pub(userToEvent(user)))
-        .then(() => Promise.resolve(newUserId));
-}
-
-function userToEvent(user: AuthApi.User): store.Event {
-    return {
-        context: "users",
-        event: "create",
-        key: user.username,
-        data: {
-            username: user.username,
-            email: user.email,
-        }
-    };
+        .then(id => id[0])
+        .then(newUserId => Promise.resolve(newUserId));
 }
 
 /**
