@@ -1,3 +1,4 @@
+import AuthApi = require("ls-auth-api");
 import server = require("../server");
 import auth = require("./auth");
 import createUser = require("./users/create");
@@ -16,7 +17,7 @@ function init(port?: number) {
     server.listen(port);
     
     server.post("/register", (request, response) => {
-        var user: App.User = request.body;
+        var user: AuthApi.User = request.body;
 
         auth.register(user)
             .then(id => {
