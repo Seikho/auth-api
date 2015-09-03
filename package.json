@@ -1,5 +1,5 @@
 {
-  "name": "auth-api",
+  "name": "ls-auth-api",
   "version": "0.5.0",
   "description": "Longshot Authentication API",
   "main": "src/index",
