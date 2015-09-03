@@ -11,7 +11,8 @@ export = {
     startWebServer: webInit
 }
 
-var cliPort = cfg.config("auth-port") || 0;
+var cliPort = parseInt(cfg.config("auth-port")) || 0;
+if (cliPort <= 0) cliPort = 0;
 
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
@@ -25,7 +26,7 @@ function successHandler(isCreated: boolean) {
     if (cliPort === 0) return; 
     
     webInit(cliPort);
-    log.info("Server successfully started");
+    log.info(`Server successfully started [${cliPort}]`);
 }
 
 function failHandler(errorMessage: any) {

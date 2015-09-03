@@ -3,7 +3,9 @@ var dbInit = require("./store/init");
 var log = require("ls-logger");
 var authApi = require("./api/auth");
 var webInit = require("./api/web");
-var cliPort = cfg.config("auth-port") || 0;
+var cliPort = parseInt(cfg.config("auth-port")) || 0;
+if (cliPort <= 0)
+    cliPort = 0;
 cfg.config("baseDatabase", "auth.base.db");
 cfg.config("liveDatabase", "auth.db");
 dbInit()
@@ -14,7 +16,7 @@ function successHandler(isCreated) {
     if (cliPort === 0)
         return;
     webInit(cliPort);
-    log.info("Server successfully started");
+    log.info("Server successfully started [" + cliPort + "]");
 }
 function failHandler(errorMessage) {
     log.error("Failed to start server (Database error): " + errorMessage);

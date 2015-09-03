@@ -5,7 +5,7 @@
   "main": "src/index",
   "scripts": {
     "test": "mocha",
-    "start": "node src/index",
+    "start": "node src/index --auth-port",
     "build": "tsglob && tsc"
   },
   "repository": {
