@@ -9,7 +9,7 @@ export = createUser;
 function createUser(user: AuthApi.User) {
     user.enabled = 1;
     var isUserValid = isNewUserValid(user);
-    if (!isUserValid) return Promise.reject("Bad request: Required fields were not supplied");
+    if (!isUserValid) return Promise.reject("Bad request: Required fields were not supplied " + JSON.stringify(requiredFields));
     var newUserId;
 
     return canUserBeCreated(user.username)
@@ -29,7 +29,6 @@ function userToEvent(user: AuthApi.User): store.Event {
         data: {
             username: user.username,
             email: user.email,
-            company: user.company
         }
     };
 }
@@ -43,10 +42,10 @@ function canUserBeCreated(username: string) {
         .select()
         .where({ username: username })
         .then((users: any[]) => {
-        var isUserCreated = users.length > 0;
-        if (!isUserCreated) return Promise.resolve(true);
-        return Promise.reject("User already exists");
-    });
+            var isUserCreated = users.length > 0;
+            if (!isUserCreated) return Promise.resolve(true);
+            return Promise.reject("User already exists");
+        });
 }
 
 function insertUser(user: AuthApi.User) {
@@ -57,19 +56,18 @@ function insertUser(user: AuthApi.User) {
     return createHash(user.password)
         .then(changePw)
         .then(() => {
-        return db("users")
-            .insert(user)
-            .then(Promise.resolve);
-    });
+            return db("users")
+                .insert(user)
+                .then(Promise.resolve);
+        });
 }
 
 function isNewUserValid(user: any) {
-    var requiredFields = [
-        "username",
-        "password",
-        "company",
-        "email"
-    ];
-
-    return requiredFields.every(prop => user.hasOwnProperty(prop));
+  return requiredFields.every(prop => user.hasOwnProperty(prop));
 }
+
+var requiredFields = [
+    "username",
+    "password",
+    "email"
+];

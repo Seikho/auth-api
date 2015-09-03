@@ -7,7 +7,7 @@ function createUser(user) {
     user.enabled = 1;
     var isUserValid = isNewUserValid(user);
     if (!isUserValid)
-        return Promise.reject("Bad request: Required fields were not supplied");
+        return Promise.reject("Bad request: Required fields were not supplied " + JSON.stringify(requiredFields));
     var newUserId;
     return canUserBeCreated(user.username)
         .then(function () { return insertUser(user); })
@@ -25,7 +25,6 @@ function userToEvent(user) {
         data: {
             username: user.username,
             email: user.email,
-            company: user.company
         }
     };
 }
@@ -53,12 +52,11 @@ function insertUser(user) {
     });
 }
 function isNewUserValid(user) {
-    var requiredFields = [
-        "username",
-        "password",
-        "company",
-        "email"
-    ];
     return requiredFields.every(function (prop) { return user.hasOwnProperty(prop); });
 }
+var requiredFields = [
+    "username",
+    "password",
+    "email"
+];
 module.exports = createUser;
