@@ -8,7 +8,8 @@ npm install ls-auth-api --save
 
 As a standalone server:
 ```
-git clone https://github.com/longshot-io/auth-api
+git clone https://github.com/longshot-io/auth-api && cd auth-api
+npm install
 ```
 
 ### Usage
