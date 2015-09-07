@@ -1,5 +1,5 @@
 var Promise = require("bluebird");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 function compareHash(unhashed, hashedString) {
     var promise = new Promise(function (resolve, reject) {
         bcrypt.compare(unhashed, hashedString, function (err, isCorrect) {

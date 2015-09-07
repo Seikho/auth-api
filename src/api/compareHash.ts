@@ -1,5 +1,5 @@
 import Promise = require("bluebird");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 export = compareHash;
 
 function compareHash(unhashed: string, hashedString: string): Promise<boolean> {

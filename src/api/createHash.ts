@@ -1,5 +1,5 @@
 import Promise = require("bluebird");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 export = getPasswordHash;
 
 function getPasswordHash(password: string): Promise<string> {
@@ -11,7 +11,7 @@ function getPasswordHash(password: string): Promise<string> {
 
     var createHash = (saltError, salt) => {
         if (saltError) return reject("Failed to create salt: " + saltError);
-        bcrypt.hash(password, salt, (err, hash) => {
+        bcrypt.hash(password, salt, null, (err, hash) => {
             if (err) return reject("Failed to create hash: " + err);
             resolve(hash);
         });
