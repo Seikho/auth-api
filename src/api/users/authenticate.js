@@ -2,7 +2,7 @@ var Promise = require("bluebird");
 var db = require("../../store/db");
 var compareHash = require("../compareHash");
 var createToken = require("../createToken");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 function authenticate(username, password) {
     return getUserPasswordHash(username)
         .then(function (hash) { return compareHash(password, hash); })

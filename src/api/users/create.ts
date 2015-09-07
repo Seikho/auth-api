@@ -2,7 +2,7 @@ import AuthApi = require("ls-auth-api");
 import db = require("../../store/db");
 import Promise = require("bluebird");
 import createHash = require("../createHash");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 export = createUser;
 
 function createUser(user: AuthApi.User) {

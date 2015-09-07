@@ -1,7 +1,7 @@
 var db = require("../../store/db");
 var Promise = require("bluebird");
 var createHash = require("../createHash");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 function createUser(user) {
     user.enabled = 1;
     var isUserValid = isNewUserValid(user);
