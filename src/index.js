@@ -12,11 +12,11 @@ dbInit()
     .then(successHandler)
     .catch(failHandler);
 function successHandler(isCreated) {
-    log.info("Database created: " + isCreated);
+    log.info("ls-auth-api: Database created: " + isCreated);
     if (cliPort === 0)
         return;
     webInit(cliPort);
-    log.info("Server successfully started [" + cliPort + "]");
+    log.info("ls-auth-api: Server successfully started [" + cliPort + "]");
 }
 function failHandler(errorMessage) {
     log.error("Failed to start server (Database error): " + errorMessage);

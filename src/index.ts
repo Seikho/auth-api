@@ -22,11 +22,11 @@ dbInit()
     .catch(failHandler);
 
 function successHandler(isCreated: boolean) {
-    log.info("Database created: " + isCreated);
+    log.info("ls-auth-api: Database created: " + isCreated);
     if (cliPort === 0) return; 
     
     webInit(cliPort);
-    log.info(`Server successfully started [${cliPort}]`);
+    log.info(`ls-auth-api: Server successfully started [${cliPort}]`);
 }
 
 function failHandler(errorMessage: any) {
