@@ -1,6 +1,6 @@
 {
   "name": "ls-auth-api",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Longshot Authentication API",
   "main": "src/index",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/designco-wa/auth-api.git"
+    "url": "git+https://github.com/seikho/auth-api.git"
   },
   "keywords": [
     "longshot",
