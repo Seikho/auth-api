@@ -1,4 +1,4 @@
-import AuthApi = require("ls-auth-api");
+import AuthApi = require('../index.d.ts');
 import createHash = require("../src/api/createHash");
 import compareHash = require("../src/api/compareHash");
 import verifyToken = require("../src/api/verifyToken");

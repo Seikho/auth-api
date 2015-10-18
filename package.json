@@ -1,16 +1,16 @@
 {
   "name": "ls-auth-api",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "Longshot Authentication API",
   "main": "src/index",
   "scripts": {
     "test": "mocha",
     "start": "node src/index --auth-port",
-    "build": "tsglob && tsc"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/designco-wa/auth-api.git"
+    "url": "git+https://github.com/seikho/auth-api.git"
   },
   "keywords": [
     "longshot",
@@ -32,13 +32,12 @@
     "express": "^4.12.4",
     "jsonwebtoken": "^5.0.2",
     "knex": "^0.8.6",
-    "ls-config": "^0",
-    "ls-logger": "^0",
+    "ls-config": "^0.4.1",
+    "ls-logger": "^0.3.0",
     "mocha": "^2.3.0",
     "sqlite3": "^3.0.8"
   },
   "devDependencies": {
-    "ts-globber": "^0.4.3",
-    "typescript": "^1.5.3"
+    "typescript": "^1.6.2"
   }
 }

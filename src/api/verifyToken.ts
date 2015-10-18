@@ -1,4 +1,4 @@
-import AuthApi = require("ls-auth-api");
+import AuthApi = require('../../index.d.ts');
 import Promise = require("bluebird");
 import jwt = require("jsonwebtoken");
 import getSecret = require("./getSecret");

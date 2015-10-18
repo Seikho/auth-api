@@ -3,7 +3,7 @@ import authUser = require("./users/authenticate");
 import createSession = require("./createSession");
 import verifyToken = require("./verifyToken");
 import isStoredToken = require("./isStoredToken");
-import AuthApi = require("ls-auth-api");
+import AuthApi = require('../../index.d.ts');
 
 export function register(user: AuthApi.User) {
 	return createUser(user);
