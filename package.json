@@ -1,12 +1,12 @@
 {
   "name": "ls-auth-api",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Longshot Authentication API",
   "main": "src/index",
   "scripts": {
     "test": "mocha",
     "start": "node src/index --auth-port",
-    "build": "tsglob && tsc"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,6 @@
     "sqlite3": "^3.0.8"
   },
   "devDependencies": {
-    "ts-globber": "^0.4.3",
-    "typescript": "^1.5.3"
+    "typescript": "^1.6.2"
   }
 }
