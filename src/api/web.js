@@ -1,6 +1,8 @@
 var server = require("../server");
 var auth = require("./auth");
 var log = require("ls-logger");
+// TODO: Enforce a password policy
+// TODO: Disallow top 10000 most common passwords
 var started = false;
 function init(port) {
     if (started)

@@ -12,6 +12,10 @@ function createUser(user) {
         .then(function (id) { return id[0]; })
         .then(function (newUserId) { return Promise.resolve(newUserId); });
 }
+/**
+ * The returns a reject promise if thr user already exists
+ * Resolves to true if the user can be created
+ */
 function canUserBeCreated(username) {
     return db("users")
         .select()

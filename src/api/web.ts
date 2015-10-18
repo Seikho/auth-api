@@ -1,4 +1,4 @@
-import AuthApi = require("ls-auth-api");
+import AuthApi = require('../../index.d.ts');
 import server = require("../server");
 import auth = require("./auth");
 import createUser = require("./users/create");

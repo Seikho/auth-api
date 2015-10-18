@@ -1,4 +1,4 @@
-import AuthApi = require("ls-auth-api");
+import AuthApi = require('../../../index.d.ts');
 import db = require("../../store/db");
 import Promise = require("bluebird");
 import createHash = require("../createHash");
